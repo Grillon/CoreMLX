@@ -204,4 +204,35 @@ cython_debug/
 # Marimo
 marimo/_static/
 marimo/_lsp/
+
+# --- CoreMLX-specific ignores ---
+
+# Streamlit
+.streamlit/
+**/.streamlit/
+
+# FastAPI generated files
+openapi.json
+
+# Model weights and cache
+models/*.gguf
+models/*.bin
+models/*.pt
+models/cache/
+*.ckpt
+*.safetensors
+
+# Frontend build artifacts (if using Next.js or other)
+frontend/.next/
+frontend/out/
+frontend/node_modules/
+
+# Logs
+*.log
+
+# Docker
+*.pid
+*.pid.lock
+docker-compose.override.yml
+
 __marimo__/
