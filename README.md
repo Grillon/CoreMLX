@@ -19,7 +19,7 @@ Phase 1 en cours :
 - [x] Structuration projet
 - [x] Choix du modèle
 - [x] Backend minimal
-- [ ] Frontend simple
+- [x] Frontend simple
 - [ ] Pitch + vidéo de démonstration
 
 ---
@@ -32,11 +32,20 @@ Faute de soutien suffisant malgré la qualité de leur contribution, ils ont qui
 
 Cette trajectoire — quitter un environnement instable pour structurer un socle technique ouvert — résonne avec l’intention de ce projet.
 
-## test du modèle
+## 🧪 Test du modèle
 
 * installer llama.cpp
 
->Le plus simple est de prendre directement les binaires, le plus sure et souverain de le compiler à partir des sources
+> Le plus simple est de prendre directement les binaires. Le plus sûr et souverain : compiler depuis les sources.
+
+
+***Si vous faite le choix de compiler alors vous pouvez utiliser les scripts setup.sh et mybin.sh***
+
+```bash
+cd scripts
+./scripts/setup.sh # clone llama.cpp le build et ensuite telecharge le model q4
+./scripts/mybin.sh -i $dossier_build_bin_llamacpp # installe les binaires compilés ; passer le chemin en 2e argument
+```
 
 * lancer le model
 
@@ -58,8 +67,6 @@ curl -s -X POST http://localhost:8001/completion \
   | jq -r '.content'
 ```
 
-
-
 ## 🔓 Licence
 
 MIT — réutilisable librement avec attribution.
@@ -69,6 +76,8 @@ MIT — réutilisable librement avec attribution.
 * model full precision  : [OpenHermes-2.5-Mistral-7B sur huggingface](https://huggingface.co/teknium/OpenHermes-2.5-Mistral-7B)
 * model quantisé orienté cpu: [OpenHermes-2.5-Mistral-7B-GGUF sur huggingface](TheBloke/OpenHermes-2.5-Mistral-7B-GGUF)
 * llama.cpp: [llama.cpp](https://github.com/ggml-org/llama.cpp)
+* fastAPI: [FastAPI](https://fastapi.tiangolo.com/)
+* streamlite: [Streamlite](https://streamlit.io/#install)
 
 * (à venir)
 
