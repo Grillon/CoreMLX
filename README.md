@@ -50,17 +50,19 @@ cd scripts
 * lancer le model
 
 ```bash
+# si vous n'avez pas utilisé les scripts
 mkdir models
 cd models
 wget https://huggingface.co/TheBloke/OpenHermes-2.5-Mistral-7B-GGUF/resolve/main/openhermes-2.5-mistral-7b.Q4_K_M.gguf
 cd ..
+# Ici on lance le serveur du model
 llama-server -m models/openhermes-2.5-mistral-7b.Q4_K_M.gguf --port 8001
 ```
 
 * tester avec curl + jq (dans votre repo de distribution favori)
 
 ```bash
-prompt='Bonjour, que puis-je faire pour vous ?'
+prompt='Combien les humains ont-il de doigts ?'
 curl -s -X POST http://localhost:8001/completion \
   -H "Content-Type: application/json" \
   -d "{\"prompt\": \"$prompt\", \"n_predict\": 64}" \
