@@ -23,8 +23,10 @@ Créer un système d’inférence local basé sur un modèle préentraîné enca
 
 # Chaque script a une fonction simple. Reprise possible en cas d’échec.
 
-git clone https://github.com/tonuser/coremlx.git
-cd coremlx
+git clone https://github.com/tonuser/CoreMLX.git
+# perso je prefere ssh
+# git clone git@github.com:Grillon/CoreMLX.git
+cd CoreMLX
 
 ./scripts/01_create_venv.sh
 ./scripts/02_install_prerequis.sh
@@ -43,18 +45,35 @@ llama-server -m ./models/openhermes-2.5-mistral-7b.Q4_K_M.gguf --port 8001
 Dans un autre terminal
 
 ```bash
+source .venv/bin/activate
 fastapi dev backend/app/main.py
 ```
 
 On teste dans un troisième terminal : 
 
 ```bash
+# test llama.cpp
 curl -s -X POST http://localhost:8001/completion \
   -H "Content-Type: application/json" \
   -d '{"prompt": "Combien les humains ont-il de doigts ?", "n_predict": 64}' | jq -r '.content'
+
+# test fastapi
+
+curl -X 'POST' \
+  'http://127.0.0.1:8000/v1/chat/completions' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "messages": [
+    {
+      "role": "user",
+      "content": "Combien de doigts les humains ont-ils?"
+    }
+  ]
+}'
 ```
 
-Ou, en Python :
+Ou, en Python test llama.cpp :
 
 ```python
 import requests
@@ -67,9 +86,32 @@ response = requests.post(
 print(response.json()["content"])
 ```
 
+en python test fastAPI :
+
+```python
+import requests
+
+data = {
+  "messages": [
+    {
+      "role": "user",
+      "content": "Combien de doigts les humains ont-ils?"
+    }
+  ]
+}
+
+response = requests.post(
+  "http://127.0.0.1:8000/v1/chat/completions",
+  json=data
+)
+
+print(response.json())
+```
+
 Dans un autre quatrième terminal on lance le front : 
 
 ```bash
+source .venv/bin/activate
 streamlit run frontend/app.py
 ```
 
