@@ -142,9 +142,9 @@ Cette trajectoire — quitter un environnement instable pour structurer un socle
 
 ## 🧪 Configs testées
 
-|Marque|modèle|CPU|GPU|RAM|OS|Resultat|
-|---|---|---|---|---|---|---|---|
-|HP|Elitebook840 G6|Corei58thGen|None|32Go|Ubuntu 24.04.2 LTS|Fonctionne|
+|Marque|modèle         |CPU         |GPU|RAM  |OS                |Resultat  |
+|------|---------------|------------|----|----|------------------|----------|
+|HP    |Elitebook840 G6|Corei58thGen|None|32Go|Ubuntu 24.04.2 LTS|Fonctionne|
 
 ## 📺 Démo
 
