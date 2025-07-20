@@ -43,7 +43,7 @@ llama-server -m ./models/openhermes-2.5-mistral-7b.Q4_K_M.gguf --port 8001
 Dans un autre terminal
 
 ```bash
-streamlit run frontend/app.py
+fastapi dev backend/app/main.py
 ```
 
 On teste dans un troisième terminal : 
@@ -65,6 +65,12 @@ response = requests.post(
     json={"prompt": prompt, "n_predict": 64}
 )
 print(response.json()["content"])
+```
+
+Dans un autre quatrième terminal on lance le front : 
+
+```bash
+streamlit run frontend/app.py
 ```
 
 ## 🧱 Architecture (Phase 1)
