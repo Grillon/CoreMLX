@@ -11,5 +11,5 @@ fi
 
 # Télécharger le modèle (Q4_K_M)
 MODEL_URL="https://huggingface.co/TheBloke/OpenHermes-2.5-Mistral-7B-GGUF/resolve/main/openhermes-2.5-mistral-7b.Q4_K_M.gguf"
-wget -nc -O models/openhermes.q4_k_m.gguf "$MODEL_URL"
+wget -nc -O models/openhermes-2.5-mistral-7b.Q4_K_M.gguf "$MODEL_URL"
 

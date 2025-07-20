@@ -1,4 +1,6 @@
 # CoreMLX
+🧠 Infrastructure IA open source — reproductible, modulaire, sans dépendance cloud.
+
 ## Core ML eXtensible
 
 **Chatbot local, modulaire et évolutif** — conçu pour servir de socle libre à des démonstrations MLOps, DevOps, Docker et CI/CD.
@@ -6,6 +8,42 @@
 ## 🎯 Objectif
 
 Créer un système d’inférence local basé sur un modèle préentraîné encapsulé dans une API compatible OpenAI, avec une interface utilisateur simple. Le tout doit être modulaire, documenté, exécutable en local et évolutif vers des fonctionnalités avancées (RAG, fine-tuning, observabilité).
+
+## 🚀 Démarrage rapide
+
+```bash
+git clone https://github.com/tonuser/coremlx.git
+cd coremlx
+./scripts/setup.sh
+./scripts/mybin.sh -i $PWD/llama.cpp/build/bin/
+llama-server -m ./models/openhermes-2.5-mistral-7b.Q4_K_M.gguf --port 8001
+```
+Dans un autre terminal
+
+```bash
+streamlit run frontend/app.py
+```
+
+On teste dans un troisième terminal : 
+
+```bash
+curl -s -X POST http://localhost:8001/completion \
+  -H "Content-Type: application/json" \
+  -d '{"prompt": "Combien les humains ont-il de doigts ?", "n_predict": 64}' | jq -r '.content'
+```
+
+Ou, en Python :
+
+```python
+import requests
+
+prompt = "Combien les humains ont-il de doigts ?"
+response = requests.post(
+    "http://localhost:8001/completion",
+    json={"prompt": prompt, "n_predict": 64}
+)
+print(response.json()["content"])
+```
 
 ## 🧱 Architecture (Phase 1)
 
@@ -76,13 +114,25 @@ MIT — réutilisable librement avec attribution.
 ## 🔗 Liens 
 
 * model full precision  : [OpenHermes-2.5-Mistral-7B sur huggingface](https://huggingface.co/teknium/OpenHermes-2.5-Mistral-7B)
-* model quantisé orienté cpu: [OpenHermes-2.5-Mistral-7B-GGUF sur huggingface](TheBloke/OpenHermes-2.5-Mistral-7B-GGUF)
+* model quantisé orienté cpu: [OpenHermes-2.5-Mistral-7B-GGUF sur HuggingFace](https://huggingface.co/TheBloke/OpenHermes-2.5-Mistral-7B-GGUF)
 * llama.cpp: [llama.cpp](https://github.com/ggml-org/llama.cpp)
 * fastAPI: [FastAPI](https://fastapi.tiangolo.com/)
 * streamlite: [Streamlite](https://streamlit.io/#install)
 
-* (à venir)
+## 📺 À venir
 
-- Démo vidéo
-- Documentation technique
-- Présentation pédagogique
+- 🎞️ Démo vidéo (Phase 1)
+- 📘 Documentation technique
+- 🧑 Présentation pédagogique
+
+## 🧭 Phase actuelle
+
+Cette version correspond à la **Phase 1** de CoreMLX :  
+> Un chatbot local, basé sur un modèle Mistral, encapsulé dans une API FastAPI compatible OpenAI, avec une interface Streamlit.
+
+Les prochaines phases incluront :  
+- CI/CD  
+- Observabilité  
+- RAG  
+- Fine-tuning  
+- Changement de modèle à chaud  
