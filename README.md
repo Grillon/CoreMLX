@@ -23,7 +23,7 @@ Créer un système d’inférence local basé sur un modèle préentraîné enca
 
 # Chaque script a une fonction simple. Reprise possible en cas d’échec.
 
-git clone https://github.com/tonuser/CoreMLX.git
+git clone https://github.com/Grillon/CoreMLX.git
 # perso je prefere ssh
 # git clone git@github.com:Grillon/CoreMLX.git
 cd CoreMLX
@@ -128,7 +128,7 @@ Phase 1 en cours :
 - [x] Choix du modèle
 - [x] Backend minimal
 - [x] Frontend simple
-- [ ] Pitch + vidéo de démonstration
+- [x] Pitch + vidéo de démonstration
 
 ---
 
@@ -140,42 +140,14 @@ Faute de soutien suffisant malgré la qualité de leur contribution, ils ont qui
 
 Cette trajectoire — quitter un environnement instable pour structurer un socle technique ouvert — résonne avec l’intention de ce projet.
 
-## 🧪 Test du modèle
+## 🧪 Configs testées
 
-* installer llama.cpp
+|Marque|modèle|CPU|GPU|RAM|OS|
+|HP|Elitebook840 G6|Corei58thGen|None|32Go|Ubuntu 24.04.2 LTS|
 
-> Le plus simple est de prendre directement les binaires. Le plus sûr et souverain : compiler depuis les sources.
+## 📺 Démo
 
-
-***Si vous faite le choix de compiler alors vous pouvez utiliser les scripts setup.sh et mybin.sh***
-
-```bash
-cd scripts
-./scripts/setup.sh # clone llama.cpp le build et ensuite telecharge le model q4
-./scripts/mybin.sh -i $dossier_build_bin_llamacpp # installe les binaires compilés ; passer le chemin en 2e argument
-```
-
-* lancer le model
-
-```bash
-# si vous n'avez pas utilisé les scripts
-mkdir models
-cd models
-wget https://huggingface.co/TheBloke/OpenHermes-2.5-Mistral-7B-GGUF/resolve/main/openhermes-2.5-mistral-7b.Q4_K_M.gguf
-cd ..
-# Ici on lance le serveur du model
-llama-server -m models/openhermes-2.5-mistral-7b.Q4_K_M.gguf --port 8001
-```
-
-* tester avec curl + jq (dans votre repo de distribution favori)
-
-```bash
-prompt='Combien les humains ont-il de doigts ?'
-curl -s -X POST http://localhost:8001/completion \
-  -H "Content-Type: application/json" \
-  -d "{\"prompt\": \"$prompt\", \"n_predict\": 64}" \
-  | jq -r '.content'
-```
+[Vidéo de présentation (1min15)](https://youtu.be/7Kb_3M7986I)
 
 ## 🔓 Licence
 
@@ -189,9 +161,9 @@ MIT — réutilisable librement avec attribution.
 * fastAPI: [FastAPI](https://fastapi.tiangolo.com/)
 * streamlite: [Streamlite](https://streamlit.io/#install)
 
+
 ## 📺 À venir
 
-- 🎞️ Démo vidéo (Phase 1)
 - 📘 Documentation technique
 - 🧑 Présentation pédagogique
 
