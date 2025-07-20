@@ -12,10 +12,32 @@ Créer un système d’inférence local basé sur un modèle préentraîné enca
 ## 🚀 Démarrage rapide
 
 ```bash
+# Structure des scripts :
+# ./scripts/
+# ├── 01_create_venv.sh        # Crée l'environnement virtuel
+# ├── 02_install_prerequis.sh  # Installe les dépendances Python
+# ├── 03_install_model.sh      # Télécharge le modèle GGUF
+# ├── 04_build_llamacpp.sh     # (Optionnel) Clone et compile llama.cpp
+# ├── 05_run_model.sh          # Lance le modèle en local
+# └── mybin.sh                 # Installe les binaires dans ~/.local/bin
+
+# Chaque script a une fonction simple. Reprise possible en cas d’échec.
+
 git clone https://github.com/tonuser/coremlx.git
 cd coremlx
-./scripts/setup.sh
+
+./scripts/01_create_venv.sh
+./scripts/02_install_prerequis.sh
+./scripts/03_install_model.sh
+
+# (Optionnel, pour compiler et installer llama.cpp)
+./scripts/04_build_llamacpp.sh
 ./scripts/mybin.sh -i $PWD/llama.cpp/build/bin/
+
+# Lancement modèle
+./scripts/05_run_model.sh
+
+# (ou directement)
 llama-server -m ./models/openhermes-2.5-mistral-7b.Q4_K_M.gguf --port 8001
 ```
 Dans un autre terminal
